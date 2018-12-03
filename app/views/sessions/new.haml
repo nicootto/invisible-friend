@@ -1,0 +1,10 @@
+.section.no-pad-bot{ id:'index-banner' }
+  .container
+    %br
+    %h1.header.center.blue-text Amigos Invisibles
+    .row.center
+      %h5.header.col.s12.light Crea tu grupo de amigos, sortea a tu amigo invisible... ¡Que comience el juego!
+
+    .row.center
+      = google_sign_in_button 'Ingresar', proceed_to: create_login_url, class:'btn-large waves-effect waves-light blue'
+    %br
