@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   def create_user(google_user)
     user = User.new
     user.google_id = google_user.user_id
-    user.name = google_user.name #.downcase.split.map(&:capitalize).join(' ')
+    user.name = google_user.name.downcase.split.map(&:capitalize).join(' ')
     user.email = google_user.email_address.downcase
     user.picture = google_user.avatar_url
     user.save!
