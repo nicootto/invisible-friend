@@ -36,6 +36,7 @@ module DrawsHelper
         end
       end
 
+      need_matching.delete(match)
       matches << [item, match]
     end
     return matches
