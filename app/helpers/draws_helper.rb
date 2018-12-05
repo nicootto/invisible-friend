@@ -4,7 +4,7 @@ module DrawsHelper
     # Delete previous friendships of this group
     Friend.where(group_id: group.id).delete_all
 
-    friends = random_match(group.users)
+    friends = random_match(group.users.to_a)
     friends.each do |user, friend|
       Friend.create!(group_id: group.id,
                      user_id: user.id,
