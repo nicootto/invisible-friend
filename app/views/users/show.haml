@@ -1,0 +1,10 @@
+%h3 Perfil
+=@user.name
+
+%h3 Grupos
+= link_to 'Nuevo', new_group_path
+%br
+
+%ul
+  = render @user.groups
+

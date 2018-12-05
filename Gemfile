@@ -71,3 +71,7 @@ end
 gem 'google_sign_in'
 gem 'pry-rails'
 gem 'haml'
+gem 'bcrypt'
+
+gem 'debase'
+gem 'ruby-debug-ide'
