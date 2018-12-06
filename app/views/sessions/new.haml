@@ -1,10 +1,21 @@
-.section.no-pad-bot{ id:'index-banner' }
-  .container
-    %br
-    %h1.header.center.blue-text Amigos Invisibles
-    .row.center
-      %h5.header.col.s12.light Crea tu grupo de amigos, sortea a tu amigo invisible... ¡Que comience el juego!
-
-    .row.center
-      = google_sign_in_button 'Ingresar', proceed_to: create_login_url, class:'btn-large waves-effect waves-light blue'
-    %br
+-#.section.no-pad-bot{ id:'index-banner' }
+-#  .container
+-#    %br
+-#    %h1.header.center.blue-text Amigos Invisibles
+-#    .row.center
+-#      %h5.header.col.s12.light Crea tu grupo de amigos, sortea a tu amigo invisible... ¡Que comience el juego!
+-#
+-#    .row.center
+-#      = google_sign_in_button 'Ingresar', proceed_to: create_login_url, class:'btn-large waves-effect waves-light blue'
+-#    %br
+%body
+  %header.masthead.text-center.text-white.d-flex
+    .container.my-auto
+      .row
+        .col-lg-10.mx-auto
+          %h1.text-uppercase
+            %strong Amigos Invisibles
+          %h2 La forma más divertida de regalar entre amigos
+          %hr/
+        .col-lg-8.mx-auto
+          = google_sign_in_button 'Ingresar', proceed_to: create_login_url, class:'btn btn-lg btn-bd-primary mb-3 mb-md-0 mr-md-3'

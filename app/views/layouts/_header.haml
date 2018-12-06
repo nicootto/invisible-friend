@@ -1,5 +1,17 @@
-- if logged_in?
-  %nav
-    %a{ href: '/'} Home
-    %a{ href: '/logout' } Salir
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  %a.navbar-brand{:href => "/"}
+    <i class="fas fa-user-friends"></i>
+    %strong Amigos Invisibles
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      - if logged_in?
+        %li.nav-item
+          %a.nav-link{:href => "#"} Perfil
+        %li.nav-item
+          %a.nav-link{:href => "#"} Grupos
+    - if logged_in?
+      %form.form-inline.my-2.my-lg-0{ action: "/logout" }
+        %button.btn.btn-outline-info.my-2.my-sm-0{:type => "submit"} Salir
 
