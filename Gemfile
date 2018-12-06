@@ -75,3 +75,5 @@ gem 'bcrypt'
 
 gem 'debase'
 gem 'ruby-debug-ide'
+
+gem 'rspec-rails'
