@@ -1,4 +1,6 @@
 class User < ApplicationRecord
-  has_and_belongs_to_many :groups
+  has_many :group_users
+  has_many :groups, through: :group_users
+
   has_many :friends
 end

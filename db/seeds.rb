@@ -24,7 +24,21 @@ users = User.create!(
 )
 
 group = Group.create!(name: 'Los 3 Chiflados')
-group.create_invitation_code
 
 users[0].groups << group
 users[1].groups << group
+
+Friend.create!(
+  [
+    {
+      user: users[0],
+      group: group,
+      friend: users[1]
+    },
+    {
+      user: users[1],
+      group: group,
+      friend: users[0]
+    }
+  ]
+)

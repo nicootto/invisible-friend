@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_192321) do
+ActiveRecord::Schema.define(version: 2018_12_06_221752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "friends", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "group_id"
-    t.integer "friend_id"
+    t.bigint "user_id"
+    t.bigint "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["friend_id"], name: "index_friends_on_friend_id"
@@ -26,28 +26,36 @@ ActiveRecord::Schema.define(version: 2018_12_06_192321) do
     t.index ["user_id"], name: "index_friends_on_user_id"
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.string "name"
+  create_table "group_users", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "invitation_code"
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id"], name: "index_group_users_on_user_id"
   end
 
-  create_table "groups_users", id: false, force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.bigint "user_id", null: false
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "picture"
+    t.string "invitation_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "google_id"
     t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "friends", "groups"
   add_foreign_key "friends", "users"
   add_foreign_key "friends", "users", column: "friend_id"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
 end
