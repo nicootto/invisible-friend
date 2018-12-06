@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_213809) do
+ActiveRecord::Schema.define(version: 2018_12_06_192321) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "friends", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-    t.integer "friend"
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friends_on_friend_id"
     t.index ["group_id"], name: "index_friends_on_group_id"
     t.index ["user_id"], name: "index_friends_on_user_id"
   end
@@ -30,29 +34,20 @@ ActiveRecord::Schema.define(version: 2018_12_04_213809) do
   end
 
   create_table "groups_users", id: false, force: :cascade do |t|
-    t.integer "group_id", null: false
-    t.integer "user_id", null: false
-  end
-
-  create_table "user_groups", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_user_groups_on_group_id"
-    t.index ["user_id"], name: "index_user_groups_on_user_id"
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password_digest"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_id"
     t.string "google_id"
-    t.string "last_name"
     t.string "picture"
   end
 
+  add_foreign_key "friends", "groups"
+  add_foreign_key "friends", "users"
+  add_foreign_key "friends", "users", column: "friend_id"
 end
