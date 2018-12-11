@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :friends
 
   validates_presence_of :name
+  validates :email, uniqueness: true, allow_blank: true
 
   def User.find_or_create_from_auth_hash(auth_hash)
 
