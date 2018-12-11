@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   root 'sessions#new'
 
+  get '/auth/:provider/callback', to: 'sessions#create'
+
+  post '/social_linking/:provider/add', to: 'social_linking#create'
+  post '/social_linking/:provider/remove', to: 'social_linking#destroy'
+
   get 'login', to: 'sessions#new'
   get 'login/create', to: 'sessions#create', as: :create_login
   get 'logout', to: 'sessions#destroy'

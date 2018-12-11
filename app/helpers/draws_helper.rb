@@ -6,9 +6,9 @@ module DrawsHelper
 
     friends = random_match(group.users.to_a)
     friends.each do |user, friend|
-      Friend.create!(group_id: group.id,
-                     user_id: user.id,
-                     friend: friend.id)
+      Friend.create!(group: group,
+                     user: user,
+                     friend: friend)
     end
   end
 

@@ -3,7 +3,7 @@ class CreateFriends < ActiveRecord::Migration[5.2]
     create_table :friends do |t|
       t.references :group, foreign_key: true
       t.references :user, foreign_key: true
-      t.bigint :friend_id
+      t.integer :friend_id
       t.timestamps
     end
 

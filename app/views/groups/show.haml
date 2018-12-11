@@ -1,6 +1,6 @@
 %h3 Grupo #{@group.name}
 
-Link para invitar: #{ join_url + '?id=' + @group.invitation_code }
+Link para invitar: #{ join_url + '?id=' + @group.invitation_token }
 
 %h3 Integrantes
 = link_to 'Ver mi amigo', group_friends_path(@group.id)

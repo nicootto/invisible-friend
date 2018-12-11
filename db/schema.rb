@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_221752) do
+ActiveRecord::Schema.define(version: 2018_12_10_194543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_221752) do
   create_table "friends", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "user_id"
-    t.bigint "friend_id"
+    t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["friend_id"], name: "index_friends_on_friend_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_221752) do
   create_table "group_users", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "user_id"
-    t.boolean "admin"
+    t.boolean "administrator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_users_on_group_id"
@@ -40,14 +40,24 @@ ActiveRecord::Schema.define(version: 2018_12_06_221752) do
     t.string "name"
     t.string "picture"
     t.string "invitation_token"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_groups_on_owner_id"
+  end
+
+  create_table "user_auths", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "provider_uid"
+    t.string "provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_auths_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "google_id"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,4 +68,5 @@ ActiveRecord::Schema.define(version: 2018_12_06_221752) do
   add_foreign_key "friends", "users", column: "friend_id"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "groups", "users", column: "owner_id"
 end

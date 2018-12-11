@@ -18,4 +18,5 @@
           %h2 La forma más divertida de regalar entre amigos
           %hr/
         .col-lg-8.mx-auto
-          = google_sign_in_button 'Ingresar', proceed_to: create_login_url, class:'btn btn-lg btn-bd-primary mb-3 mb-md-0 mr-md-3'
+          = link_to 'Login with Google', '/auth/google_oauth2'
+          = link_to 'Login with Twitter', '/auth/twitter'

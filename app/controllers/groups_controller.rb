@@ -13,17 +13,14 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.create_invitation_code
-    @group.users << current_user
-    @group.save!
+    @group = Group.create(name: group_name, owner: current_user)
     redirect_to @group
   end
 
   private
 
-  def group_params
-    params.require(:group).permit(:name)
+  def group_name
+    params[:group][:name]
   end
 
 end

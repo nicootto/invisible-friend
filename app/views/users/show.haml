@@ -1,4 +1,6 @@
 %h3 Perfil
+- if current_user?(@user)
+  = link_to 'Editar', edit_user_path(@user)
 =@user.name
 
 %h3 Grupos

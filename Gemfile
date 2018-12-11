@@ -61,7 +61,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'shoulda-matchers'
   gem 'faker'
-  gem 'database_cleaner'
+  # gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -73,7 +73,7 @@ end
 
 #----------------
 
-gem 'google_sign_in'
+# gem 'google_sign_in'
 gem 'pry-rails'
 gem 'haml'
 gem 'bcrypt'
@@ -82,3 +82,10 @@ gem 'debase'
 gem 'ruby-debug-ide'
 
 gem 'rspec-rails'
+
+# Authentication
+gem 'omniauth'
+gem 'omniauth-twitter'
+# gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+# gem 'omniauth-linkedin'
